@@ -14,28 +14,28 @@ const auto_complete_config = {
         `;
     },
 
-    input_value (movie) {
+    input_value(movie) {
         return movie.Title;
     },
 
     //fetching data from the movie api
-//searchTerm is whatever the user types in the search bar
-    async fetch_data (searchTerm) {
-    //making a request with axios
-    const feedback = await axios.get('http://www.omdbapi.com/', {
-        //parameters for the api to function
-        params: {
-            apikey: api_key,
-            s: searchTerm
+    //searchTerm is whatever the user types in the search bar
+    async fetch_data(searchTerm) {
+        //making a request with axios
+        const feedback = await axios.get('https://www.omdbapi.com/', {
+            //parameters for the api to function
+            params: {
+                apikey: api_key,
+                s: searchTerm
+            }
+        });
+        //return empty array if feedback from api is N/A
+        if (feedback.data.Error) {
+            return [];
         }
-    });
-    //return empty array if feedback from api is N/A
-    if (feedback.data.Error) {
-        return [];
-    }
 
-    return feedback.data.Search;
-}
+        return feedback.data.Search;
+    }
 
 };
 
@@ -43,34 +43,34 @@ create_autocomplete({
     //creating a copy of auto_complete_config objetc
     ...auto_complete_config,
     autocomplete: document.querySelector("#left-autocomplete"),
-    
-    on_movie_option_select (movie) {
+
+    on_movie_option_select(movie) {
         document.querySelector(".tutorial").classList.add("is-hidden");
         movie_selection(movie, document.querySelector("#left-summary"));
-    }   
+    }
 });
 
 create_autocomplete({
     //creating a copy of auto_complete_config objetc
     ...auto_complete_config,
     autocomplete: document.querySelector("#right-autocomplete"),
-    
-    on_movie_option_select (movie) {
+
+    on_movie_option_select(movie) {
         document.querySelector(".tutorial").classList.add("is-hidden");
         movie_selection(movie, document.querySelector("#right-summary"));
     }
 });
 
 //helper function for a follow up request
-const movie_selection = async (movie, summary_element) => {
-  //making a request with axios
-  const feedback = await axios.get('http://www.omdbapi.com/', {
-    //parameters for the api to function
-    params: {
-        apikey: api_key,
-        i: movie.imdbID
-    }
-});
+const movie_selection = async(movie, summary_element) => {
+    //making a request with axios
+    const feedback = await axios.get('https://www.omdbapi.com/', {
+        //parameters for the api to function
+        params: {
+            apikey: api_key,
+            i: movie.imdbID
+        }
+    });
 
 
     summary_element.innerHTML = movie_template(feedback.data);
@@ -120,6 +120,5 @@ const movie_template = (movie_details) => {
             <p class = "title">${movie_details.imdbVotes}</p>
             <p class = "subtitle">IMDB Votes</p>
         </article>
-    `;
-;}
-
+    `;;
+}
