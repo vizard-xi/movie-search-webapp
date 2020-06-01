@@ -1,0 +1,52 @@
+<!-- https://cdnjs.com -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <section class="hero is-link is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Movie Search
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="container is-block is-mobile">
+        <div class = "columns">
+          <div class = "column">
+            <div id = "left-autocomplete"></div>
+            <div id = "left-summary"></div>
+          </div>
+
+          <div class = "column">
+            <div id = "right-autocomplete"></div>
+            <div id = "right-summary"></div>
+          </div>
+        </div>
+
+        <div class = "column is-half notification is-link tutorial">
+          <h1 class = "title">Search for a Movie on both sides...</h1>
+        </div>
+    </div>
+    
+    <script src = "utils.js"></script>
+    <script src = "autocomplete.js"></script>
+    <script src = "index.js"></script>
+
+  </body>
+</html>
